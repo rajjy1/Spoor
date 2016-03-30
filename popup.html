@@ -4,11 +4,20 @@
     <title>Spoor</title>
     <script src="popup.js"></script>
     <script src="jquery-1.12.2.js"></script>
+    <script src="jquery.cookie.js"></script>
   </head>
 <body>
-<input type="text" id="username"/>
-<button id ="getResult">Get Result</button>
-<h1>JIRA</h1>
-<ul id="jira"></ul>
+<div id="username-input">
+    <input type="text" id="username" placeholder="username"/>
+    <button id="saveUserName">Save username</button>
+</div>
+<div id="jira-display">
+    <button id="forget-user">
+        Forget User
+    </button>
+    <h1>JIRA</h1>
+    <ul id="jira"></ul>
+    <label id="jira1"> </label>
+</div>
 </body>
 </html>
