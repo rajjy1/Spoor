@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
         cList1 += " </ul>"
+        $("#github").html(cList1);
     }
 
     function PopulateJIRA() {
@@ -110,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (flag) {
                     console.log(reviewElement);
                     //$("#crucibleOutForReviewCount").html(reviewCount);
+                    $("#crucible").html(reviewElement);
                 } else {
 
                     console.log("else: " + reviewElement);

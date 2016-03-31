@@ -54,6 +54,7 @@ const App = (props) => (
 				title='Creative Director'
 				mobileNo='0491 570 157'
 				location='Brisbane, Australia'
+				id = "github"
 				role="Isaac has overseen all of Hunter and Co's creative efforts for the last five years. He's ability to generate a shared vision between teams throughout the company has been his biggest achievement."
 			/>
 		</Card>
@@ -66,6 +67,7 @@ const App = (props) => (
 				title='Sales Rep'
 				mobileNo='0491 570 158'
 				location='Sydney, Australia'
+				id = "crucible"
 				role="In Sarah's short time with the company, she is now a key figure in the sales team for the Sydney and outer region. Her excellent communication skills has opened up the door to let her mentoring any new hires in sales."
 			/>
 		</Card>
@@ -78,6 +80,7 @@ const App = (props) => (
 				title='Tech Lead'
 				mobileNo='0491 570 110'
 				location='Melbourne, Australia'
+				id = "jenkins"
 				role="In recent years Hunter & Co's website and accompaning app has undergone a massive face lift. Srinivas was responsible for the exploration and planning of the new technology used. He now works on maintaining and continually improving the website."
 			/>
 		</Card>
