@@ -15,12 +15,10 @@
     },
 
     "background"       : {
-        "scripts" : [
-            "background/background.js"
-        ]
+        "page": "background/background.html"
     },
 
     "permissions"      : [
-        "https://*.cerner.com/"
+        "alarms","activeTab","background","https://*.cerner.com/"
     ]
 }

@@ -108,6 +108,13 @@ module.exports = function(grunt) {
                         src: 'background.js',
                         dest: 'build/background',
                         expand: true
+                    },
+
+                    {
+                        cwd: 'background',
+                        src: 'background.html',
+                        dest: 'build/background',
+                        expand: true
                     }
                 ]
             }
