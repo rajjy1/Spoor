@@ -1,18 +1,24 @@
 {
-  "manifest_version": 2,
+    "manifest_version" : 2,
+    "name"             : "SPOOR- track your TODOs",
+    "version"          : "1.0.0",
 
-  "name": "Spoor",
-  "description": "This will help you track your pending development tasks",
-  "version": "1.0",
-  "browser_action": {
-   "default_icon": "icon.png",
-   "default_popup": "popup.html",
-   "background_page": "background.html"
-  },
-  "background": {
-    "page": "background.html"
-  },
-  "permissions": [
-   "alarms","activeTab","background"
-   ]
+    "description"      : "See what you owe to you team",
+
+    "icons"            : {
+        "128" : "resources/images/angry_icon.png"
+    },
+
+    "browser_action"   : {
+        "default_icon"  : "resources/images/angry_icon19.png",
+        "default_popup" : "ui/index.html"
+    },
+
+    "background"       : {
+        "page": "background/background.html"
+    },
+
+    "permissions"      : [
+        "alarms","activeTab","background","https://*.cerner.com/"
+    ]
 }

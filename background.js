@@ -70,7 +70,7 @@ function fetchGit() {
       pullRequestElement+="</ul>";
       $("#githubRequests").html(pullRequestElement);
       },error: function(obj,error,errormsg){
-      alert(obj.responseText);
+      // alert(obj.responseText);
       
     }
     });
