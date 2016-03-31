@@ -1,1 +1,40 @@
-function fetchGit(){jQuery.ajax({type:"GET",url:"https://github.cerner.com/api/v3/users/DB029476/received_events?per_page=300",dataType:"json",contentType:"application/json",async:!1,success:function(a){var b=0,c=[];return jQuery.isArray(a)&&$.each(a,function(a,d){var e=d.type;if("PullRequestEvent"==e){var f=d.payload;if("opened"==f.action){var g=f.pull_request;c.push(g.html_url),b++}}}),b},error:function(a,b,c){}})}
+function fetchGit() {
+
+  console.log('fetchGit');
+  var pullrequestCount=0;
+  jQuery.ajax({
+    type : 'GET',
+    url : 'https://github.cerner.com/api/v3/users/DB029476/received_events?per_page=100',
+    dataType : 'json',
+    contentType : 'application/json',
+    async : false,    
+    success: function(response) {
+      
+
+      var pullRequestList=[];
+      if ( jQuery.isArray(response) ) {
+      
+      $.each(response, function(i, event) {
+       var eventType=event.type;
+       if(eventType=="PullRequestEvent"){
+          var payload=event.payload;
+          if(payload.action=="opened"){
+            var pullrequest=payload.pull_request;
+            pullRequestList.push(pullrequest.html_url);
+            pullrequestCount++;
+          }
+        }
+      });
+      } else {
+        // alert('Not array');
+      }
+      
+      
+      },error: function(obj,error,errormsg){
+      // alert(obj.responseText);
+      
+    }
+    });
+  console.log(pullrequestCount);
+  return pullrequestCount;
+}
