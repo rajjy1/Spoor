@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 const styles = {
 	cardHeader: {
 		display: 'flex',
-		height: '125px',
+		height: '100px',
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		padding: '10px 20px',
@@ -33,55 +33,68 @@ const App = (props) => (
 		background='#f8f8f8'
 	  hoverOffset={25}>
 
-		<Card background='#2980B9'>
+		<Card background='#5674b9'>
       <TeamMemberCard
-	      imgSrc='https://s3.amazonaws.com/uifaces/faces/twitter/rem/128.jpg'
-	      imgBorderColor='#015389'
-	      name='James Stuart'
+		imgSrc='../../resources/images/crucible-icon.png'
+		imgBorderColor='#6A067A'
+	      name='Crucible'
 	      title='Training Manager'
 	      mobileNo='0491 570 156'
 	      location='Sydney, Australia'
-            id = "jira"
+            id = "crucible"
 	      role='Starting the company in sales, James is now responsible for overseeing all staff training. James mainly focuses on getting new employees up to speed with the practices and procedures Hunter & Co has continually refined over the last 50 years.'
 	    />
 		</Card>
 
-		<Card background='#27AE60'>
+		<Card background='#00bff3'>
 			<TeamMemberCard
-				imgSrc='https://s3.amazonaws.com/uifaces/faces/twitter/glif/128.jpg'
-				imgBorderColor='#086C32'
-				name='Isaac Pullman'
+		imgSrc='../../resources/images/jenkins-icon.png'
+		imgBorderColor='#015389'
+				name='Jenkins'
 				title='Creative Director'
 				mobileNo='0491 570 157'
 				location='Brisbane, Australia'
-				id = "github"
+				id = "jenkins"
 				role="Isaac has overseen all of Hunter and Co's creative efforts for the last five years. He's ability to generate a shared vision between teams throughout the company has been his biggest achievement."
 			/>
 		</Card>
 
-		<Card background='#9B27AE'>
+		<Card background='#3cb878'>
 			<TeamMemberCard
-				imgSrc='https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg'
+		        imgSrc='../../resources/images/jira-icon.png'
 				imgBorderColor='#6A067A'
-				name='Sarah Oscar'
+				name='Jira'
 				title='Sales Rep'
 				mobileNo='0491 570 158'
 				location='Sydney, Australia'
-				id = "crucible"
+				id = "jira"
 				role="In Sarah's short time with the company, she is now a key figure in the sales team for the Sydney and outer region. Her excellent communication skills has opened up the door to let her mentoring any new hires in sales."
 			/>
 		</Card>
 
-		<Card background='#e67e22'>
+		<Card background='#acd373'>
 			<TeamMemberCard
-				imgSrc='https://s3.amazonaws.com/uifaces/faces/twitter/9lessons/128.jpg'
-				imgBorderColor='#9D4F09'
-				name='Srinivas Tamada'
+		        imgSrc='../../resources/images/github-icon.png'
+		        imgBorderColor='#086C32'
+				name='Github'
 				title='Tech Lead'
 				mobileNo='0491 570 110'
 				location='Melbourne, Australia'
-				id = "jenkins"
+				id = "github"
 				role="In recent years Hunter & Co's website and accompaning app has undergone a massive face lift. Srinivas was responsible for the exploration and planning of the new technology used. He now works on maintaining and continually improving the website."
+			/>
+		</Card>
+
+        <Card background='#b7b7b7'>
+			<TeamMemberCard
+				imgSrc='../../resources/images/happy_icon.png'
+				imgBorderColor='#086C32'
+				name='Spoor'
+				title='what you owe to your team'
+				mobileNo='0491 570 157'
+				location='Brisbane, Australia'
+                id = "spoor"
+				role="Isaac has overseen all of Hunter and Co's creative efforts for the last five years. He's ability to generate a shared vision between teams throughout the company has been his biggest achievement."
 			/>
 		</Card>
 
@@ -91,8 +104,8 @@ const App = (props) => (
 const ProfilePicture = ({ imgSrc, borderColor }) => (
 	<img
 		style={{
-			width: '60px',
-			height: '60px',
+			width: '40px',
+			height: '40px',
 			borderRadius: '100%',
 			border: `3px solid ${borderColor}`
 		}}
@@ -158,8 +171,10 @@ const TeamMemberCard = (props) => (
 			</div>
 		</header>
 
-        <div> 
+        <div>
+            <p>
             <ul id = {props.id}> </ul>
+            </p>
         </div> 
   </div>
 );
