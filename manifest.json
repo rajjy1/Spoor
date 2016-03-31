@@ -1,0 +1,26 @@
+{
+    "manifest_version" : 2,
+    "name"             : "SPOOR- track your TODOs",
+    "version"          : "1.0.0",
+
+    "description"      : "See what you owe to you team",
+
+    "icons"            : {
+        "128" : "resources/images/angry_icon.png"
+    },
+
+    "browser_action"   : {
+        "default_icon"  : "resources/images/angry_icon19.png",
+        "default_popup" : "ui/index.html"
+    },
+
+    "background"       : {
+        "scripts" : [
+            "background/background.js"
+        ]
+    },
+
+    "permissions"      : [
+        "https://*.cerner.com/"
+    ]
+}
