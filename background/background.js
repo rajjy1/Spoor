@@ -31,8 +31,11 @@ function scheduleRequest() {
 function startRequest(params) {
     scheduleRequest();
     var pullRequestCount=0;
-    var count=fetchGit();
+    var count = fetchGit();
+     var reviewCount = fetchCrucibleReviews();
+    console.log(reviewCount);
     console.log(count);
-    pullRequestCount+= count;
+    pullRequestCount += count;
+    pullRequestCount += reviewCount;
     chrome.browserAction.setBadgeText({text: ""+pullRequestCount}); 
 }
