@@ -41,6 +41,7 @@ const App = (props) => (
 	      title='Training Manager'
 	      mobileNo='0491 570 156'
 	      location='Sydney, Australia'
+            id = "jira"
 	      role='Starting the company in sales, James is now responsible for overseeing all staff training. James mainly focuses on getting new employees up to speed with the practices and procedures Hunter & Co has continually refined over the last 50 years.'
 	    />
 		</Card>
@@ -154,23 +155,9 @@ const TeamMemberCard = (props) => (
 			</div>
 		</header>
 
-		<div style={{color: '#fff'}}>
-			<DetailsRow
-				icon='ion-ios-telephone-outline'
-				title={props.mobileNo}
-			/>
-
-			<DetailsRow
-				icon='ion-ios-location-outline'
-				title={props.location}
-			/>
-
-			<DetailsRow
-				icon='icon ion-ios-paper-outline'
-				title='Main Role'
-				summary={props.role}
-			/>
-		</div>
+        <div> 
+            <ul id = {props.id}> </ul>
+        </div> 
   </div>
 );
 
