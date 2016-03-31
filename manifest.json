@@ -4,12 +4,15 @@
   "name": "Spoor",
   "description": "This will help you track your pending development tasks",
   "version": "1.0",
-
   "browser_action": {
    "default_icon": "icon.png",
-   "default_popup": "popup.html"
+   "default_popup": "popup.html",
+   "background_page": "background.html"
+  },
+  "background": {
+    "page": "background.html"
   },
   "permissions": [
-   "activeTab"
+   "alarms","activeTab","background"
    ]
 }

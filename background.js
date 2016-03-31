@@ -1,31 +1,40 @@
-// chrome.browserAction.setBadgeText({text: "5"}); // We have 10+ unread items.
-chrome.browserAction.setBadgeBackgroundColor({color: '#ffA400'});
-document.addEventListener('DOMContentLoaded', function() {
-  var checkPageButton = document.getElementById('checkPage');
-  checkPageButton.addEventListener('click', function() {
 
-    chrome.tabs.getSelected(null, function(tab) {
-      d = document;
+var oldChromeVersion = !chrome.runtime;
+var delay = 5;
 
-      var f = d.createElement('form');
-      f.action = 'http://gtmetrix.com/analyze.html?bm';
-      f.method = 'post';
-      var i = d.createElement('input');
-      i.type = 'hidden';
-      i.name = 'url';
-      i.value = tab.url;
-      f.appendChild(i);
-      d.body.appendChild(f);
-      f.submit();
-    });
-  }, false);
-}, false);
+if (oldChromeVersion) {
+  onInit();
+} else {
+  chrome.runtime.onInstalled.addListener(onInit);
+  chrome.alarms.onAlarm.addListener(onAlarm);
+}
 
-window.onload = function() {
+function onAlarm(alarm) {
+  console.log('Got alarm', alarm);
+  startRequest();
+}
+
+function onInit() {
+  console.log('onInit');
+  startRequest();
+}
+
+function scheduleRequest() {
+  console.log('Scheduling for: ' + delay);
+
+  console.log('Creating alarm');
+    // Use a repeating alarm so that it fires again if there was a problem
+    // setting the next alarm.
+  chrome.alarms.create('refresh', {periodInMinutes: delay});
+}
+
+function startRequest(params) {
   fetchGit();
-};
+  scheduleRequest();
+}
 
 function fetchGit() {
+  // alert('This called');
   jQuery.ajax({
     type : 'GET',
     url : 'https://github.cerner.com/api/v3/users/DB029476/received_events?per_page=100',
