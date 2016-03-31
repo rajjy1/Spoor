@@ -266,12 +266,8 @@
 			),
 			_react2.default.createElement(
 				'div',
-				null,
-				_react2.default.createElement(
-					'ul',
-					{ id: props.id },
-					' '
-				)
+				{ id: props.id },
+				' '
 			)
 		);
 	};

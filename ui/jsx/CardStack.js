@@ -158,9 +158,7 @@ const TeamMemberCard = (props) => (
 			</div>
 		</header>
 
-        <div> 
-            <ul id = {props.id}> </ul>
-        </div> 
+        <div id = {props.id}> </div> 
   </div>
 );
 
