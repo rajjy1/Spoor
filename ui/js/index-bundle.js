@@ -83,7 +83,7 @@
 	var styles = {
 		cardHeader: {
 			display: 'flex',
-			height: '125px',
+			height: '100px',
 			justifyContent: 'space-between',
 			alignItems: 'center',
 			padding: '10px 20px',
@@ -114,37 +114,11 @@
 				hoverOffset: 25 },
 			_react2.default.createElement(
 				_reactCardstack.Card,
-				{ background: '#2980B9' },
+				{ background: '#5674b9' },
 				_react2.default.createElement(TeamMemberCard, {
-					imgSrc: 'https://s3.amazonaws.com/uifaces/faces/twitter/rem/128.jpg',
-					imgBorderColor: '#015389',
-					name: 'James Stuart',
-					title: 'Training Manager',
-					mobileNo: '0491 570 156',
-					location: 'Sydney, Australia',
-					role: 'Starting the company in sales, James is now responsible for overseeing all staff training. James mainly focuses on getting new employees up to speed with the practices and procedures Hunter & Co has continually refined over the last 50 years.'
-				})
-			),
-			_react2.default.createElement(
-				_reactCardstack.Card,
-				{ background: '#27AE60' },
-				_react2.default.createElement(TeamMemberCard, {
-					imgSrc: 'https://s3.amazonaws.com/uifaces/faces/twitter/glif/128.jpg',
-					imgBorderColor: '#086C32',
-					name: 'Isaac Pullman',
-					title: 'Creative Director',
-					mobileNo: '0491 570 157',
-					location: 'Brisbane, Australia',
-					role: 'Isaac has overseen all of Hunter and Co\'s creative efforts for the last five years. He\'s ability to generate a shared vision between teams throughout the company has been his biggest achievement.'
-				})
-			),
-			_react2.default.createElement(
-				_reactCardstack.Card,
-				{ background: '#9B27AE' },
-				_react2.default.createElement(TeamMemberCard, {
-					imgSrc: 'https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg',
+					imgSrc: '../../resources/images/crucible-icon.png',
 					imgBorderColor: '#6A067A',
-					name: 'Sarah Oscar',
+					name: 'Crucible',
 					title: 'Sales Rep',
 					mobileNo: '0491 570 158',
 					location: 'Sydney, Australia',
@@ -153,15 +127,54 @@
 			),
 			_react2.default.createElement(
 				_reactCardstack.Card,
-				{ background: '#e67e22' },
+				{ background: '#00bff3' },
 				_react2.default.createElement(TeamMemberCard, {
-					imgSrc: 'https://s3.amazonaws.com/uifaces/faces/twitter/9lessons/128.jpg',
+					imgSrc: '../../resources/images/jenkins-icon.png',
+					imgBorderColor: '#015389',
+					name: 'Jenkins',
+					title: 'Training Manager',
+					mobileNo: '0491 570 156',
+					location: 'Sydney, Australia',
+					role: 'Starting the company in sales, James is now responsible for overseeing all staff training. James mainly focuses on getting new employees up to speed with the practices and procedures Hunter & Co has continually refined over the last 50 years.'
+				})
+			),
+			_react2.default.createElement(
+				_reactCardstack.Card,
+				{ background: '#3cb878' },
+				_react2.default.createElement(TeamMemberCard, {
+					imgSrc: '../../resources/images/jira-icon.png',
 					imgBorderColor: '#9D4F09',
-					name: 'Srinivas Tamada',
+					name: 'Jira',
 					title: 'Tech Lead',
 					mobileNo: '0491 570 110',
 					location: 'Melbourne, Australia',
 					role: 'In recent years Hunter & Co\'s website and accompaning app has undergone a massive face lift. Srinivas was responsible for the exploration and planning of the new technology used. He now works on maintaining and continually improving the website.'
+				})
+			),
+			_react2.default.createElement(
+				_reactCardstack.Card,
+				{ background: '#acd373' },
+				_react2.default.createElement(TeamMemberCard, {
+					imgSrc: '../../resources/images/github-icon.png',
+					imgBorderColor: '#086C32',
+					name: 'Github',
+					title: 'Creative Director',
+					mobileNo: '0491 570 157',
+					location: 'Brisbane, Australia',
+					role: 'Isaac has overseen all of Hunter and Co\'s creative efforts for the last five years. He\'s ability to generate a shared vision between teams throughout the company has been his biggest achievement.'
+				})
+			),
+			_react2.default.createElement(
+				_reactCardstack.Card,
+				{ background: '#b7b7b7' },
+				_react2.default.createElement(TeamMemberCard, {
+					imgSrc: '../../resources/images/happy_icon.png',
+					imgBorderColor: '#086C32',
+					name: 'Spoor',
+					title: 'what you owe to your team',
+					mobileNo: '0491 570 157',
+					location: 'Brisbane, Australia',
+					role: 'Isaac has overseen all of Hunter and Co\'s creative efforts for the last five years. He\'s ability to generate a shared vision between teams throughout the company has been his biggest achievement.'
 				})
 			)
 		);
@@ -172,8 +185,8 @@
 		var borderColor = _ref.borderColor;
 		return _react2.default.createElement('img', {
 			style: {
-				width: '60px',
-				height: '60px',
+				width: '40px',
+				height: '40px',
 				borderRadius: '100%',
 				border: '3px solid ' + borderColor
 			},
