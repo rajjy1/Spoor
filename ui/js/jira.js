@@ -47,6 +47,7 @@ function fetchData(){
 	PopulateGIT();
 	PopulateJIRA();
 	fetchCrucibleReviews();
+    fetchJenkinsJobs();
 
 }
 
@@ -142,6 +143,50 @@ function fetchReviews(apiUrl, flag) {
         }, error: function (obj, error, errormsg) {
             console.log(obj.responseText);
         }
+    });
+    return reviewCount;
+}
+
+function fetchJenkinsJobs() {
+    var reviewCount=0;
+  jQuery.ajax({
+    type : 'GET',
+    url : 'https://jenkins.cerner.com/mmf/view/CAMM%20Platform%20Services/api/json',
+    dataType : 'json',
+    contentType : 'application/json',
+    success: function(response) {
+      var reviewData=response.jobs
+      var jobsList=[];
+      if ( jQuery.isArray(reviewData) ) {
+      
+      $.each(reviewData, function(i, event) {
+          
+            var jobstate=event.color;
+
+        if (jobstate=='red')
+        {
+          var jobname = event.name;
+          var url = event.url;
+          var jobentry = '<a href=' + url + ' target="_blank">' + jobname + '</a>';
+          jobsList.push(jobentry);
+          reviewCount++;
+        }
+
+      });
+      } else {
+        alert('Not array');
+      }
+     updateCount(reviewCount);
+      var reviewElement="<ul>";
+      $.each(jobsList, function(i, reviewId) {
+        reviewElement+="<li>" + reviewId + "</li>";
+      });
+      reviewElement+="</ul>";
+      $("#jenkins").html(reviewElement);
+      },error: function(obj,error,errormsg){
+      alert(obj.responseText);
+      
+    }
     });
     return reviewCount;
 }
