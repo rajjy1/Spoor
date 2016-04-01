@@ -49,7 +49,7 @@ module.exports = function(grunt) {
 
             build: {
                 entry: {
-                    index: './ui/jsx/index.js'
+                    index: './ui/jsx/CardStack.js'
                 },
 
                 output: {
