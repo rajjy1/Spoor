@@ -1,10 +1,16 @@
+cernerUsername = $.cookie('cenrerusername');
+jenkinsViewName = $.cookie('jenkViewName');
+
 document.addEventListener('DOMContentLoaded', function () {
-    fetchData();
+    console.log("cookie username:" + $.cookie('cernerusername'));
+    if (cernerUsername == null || cernerUsername == "") {
+        SetUnAvailableStatus();
+    } else {
+        fetchData();
+    }
     DisplayInput();
     RegisterInputEvents();
 }, false);
-
-cernerUsername = $.cookie('username');
 
 function PopulateGIT() {
     jQuery.ajax({
@@ -50,12 +56,24 @@ function fetchCount() {
     fetchData();
 }
 
+function SetUnAvailableStatus() {
+    $("#jiras").text("UnAvailable");
+    $("#reviews").text("UnAvailable");
+    $("#failed").text("UnAvailable");
+    $("#requests").text("UnAvailable");
+}
+
 function fetchData() {
     count = 0;
     PopulateGIT();
     fetchJira();
     fetchCrucibleReviews();
-    fetchJenkinsJobs();
+    if (jenkinsViewName == null || jenkinsViewName == "") {
+        $("#failed").text("UnAvailable");
+    }
+    else {
+        fetchJenkinsJobs();
+    }
 }
 
 function fetchJira()
@@ -202,10 +220,12 @@ function fetchReviews(apiUrl, flag) {
 
 function fetchJenkinsJobs() {
     var reviewCount = 0;
+    console.log(jenkinsViewName + '/api/json');
     jQuery.ajax({
         type: 'GET',
-        url: 'https://jenkins.cerner.com/mmf/view/CAMM%20Platform%20Services/api/json',
+        url: jenkinsViewName + '/api/json',
         dataType: 'json',
+        jsonp: false,
         contentType: 'application/json',
         success: function (response) {
             var reviewData = response.jobs
@@ -248,9 +268,9 @@ function fetchJenkinsJobs() {
 
 function DisplayInput() {
     console.log("in here");
-    $("#spoor").html("<div id='username-input'> <input type='text' id='username' placeholder='username' /> <label id = 'savedUser'> </label> <br /> <button id='changeUser'> Switch User </button> <button id='saveUser'> Save User </button> </div>");
+    $("#spoor").html("<div id='username-input'> <input type='text' id='username' placeholder='username' /> <label id = 'savedUser'> </label> <br /> <button id='changeUser'> Switch User </button> <button id='saveUser'> Save User </button> </div>       <br /><br />         <div id='viewname-input'> <input type='text' id='viewName' placeholder='view name' /> <label id = 'savedViewName'> </label> <br /> <button id='changeViewName'> Switch View Name </button> <button id='saveViewName'> Save View Name </button> </div>");
     console.log("username:" + cernerUsername);
-    if (cernerUsername == null) {
+    if (cernerUsername == null || cernerUsername == "") {
         console.log("null");
         $("#savedUser").hide();
         $("#changeUser").hide();
@@ -260,17 +280,31 @@ function DisplayInput() {
         $("#username").hide();
         $("#saveUser").hide();
     }
+
+    if (jenkinsViewName == null || jenkinsViewName == "") {
+        console.log("null");
+        $("#savedViewName").hide();
+        $("#changeViewName").hide();
+    } else {
+        $("#savedViewName").text(jenkinsViewName);
+        console.log("not null");
+        $("#viewName").hide();
+        $("#saveViewName").hide();
+    }
 }
 
 function RegisterInputEvents() {
+    /* username events */
     $("#username").click(function (event) {
-        console.log($.cookie('username'));
+        console.log($.cookie('cenrerusername'));
         event.stopPropagation();
         return false;
     })
 
     $("#saveUser").click(function (event) {
-        SetCookie('username', $("#username").val());
+        var input = $("#username").val();
+        SetCookie('cenrerusername', $("#username").val());
+        cernerUsername = $.cookie('cenrerusername');
         console.log(cernerUsername);
         $("#username").hide();
         $("#saveUser").hide();
@@ -282,18 +316,55 @@ function RegisterInputEvents() {
 
     $("#changeUser").click(function (event) {
         event.stopPropagation();
-        $.removeCookie('username');
+        SetCookie('cenrerusername', "");
+        cernerUsername = "";
         $("#username").show();
         $("#saveUser").show();
         $("#savedUser").text("");
         $("#savedUser").hide();
         $("#changeUser").hide();
+        fetchData();
     })
+    /* username events */
+
+
+    /* viewName events*/
+
+    $("#viewName").click(function (event) {
+        console.log($.cookie('jenkViewName'));
+        event.stopPropagation();
+        return false;
+    })
+
+    $("#saveViewName").click(function (event) {
+        var input = $("#viewName").val();
+        SetCookie('jenkViewName', $("#viewName").val());
+        jenkinsViewName = $.cookie('jenkViewName');
+        console.log(jenkinsViewName);
+        $("#viewName").hide();
+        $("#saveViewName").hide();
+        $("#savedViewName").text(jenkinsViewName);
+        $("#savedViewName").show();
+        $("#changeViewName").show();
+        fetchData();
+    })
+
+    $("#changeViewName").click(function (event) {
+        event.stopPropagation();
+        SetCookie('jenkViewName', "");
+        jenkinsViewName = "";
+        $("#viewName").show();
+        $("#saveViewName").show();
+        $("#savedViewName").text("");
+        $("#savedViewName").hide();
+        $("#changeViewName").hide();
+        fetchData();
+    })
+    /* viewName events*/
 }
 
 function SetCookie(name, value) {
     $.cookie(name, value, { expires: 7, path: '/' });
-    cernerUsername = $.cookie('username');
 }
 
 /**Cookies */

@@ -40,7 +40,6 @@ const App = (props) => (
 		imgSrc='../../resources/images/crucible-icon.png'
 		imgBorderColor='#6A067A'
 		name='Crucible'
-		status='Unavailable'
 		titleid='reviews'
 	      id = "crucible"
 	      inputVisible = 'none'
@@ -51,7 +50,6 @@ const App = (props) => (
 			<TeamMemberCard
 		imgSrc='../../resources/images/jenkins-icon.png'
 		imgBorderColor='#015389'
-		status='Unavailable'
 		titleid='failed'
 				name='Jenkins'
 				id = "jenkins"
@@ -63,7 +61,6 @@ const App = (props) => (
 		        imgSrc='../../resources/images/jira-icon.png'
 				imgBorderColor='#6A067A'
 				name='Jira'
-				status='Unavailable'
 				titleid='jiras'
 				id = "jira"
 				inputVisible = 'none'/>
@@ -74,7 +71,6 @@ const App = (props) => (
 		        imgSrc='../../resources/images/github-icon.png'
 		        imgBorderColor='#086C32'
 				name='Github'
-				status='Unavailable'
 				titleid='requests'
 				id = "github"
 				inputVisible = 'none'/>

@@ -19,6 +19,6 @@
     },
 
     "permissions"      : [
-        "alarms","activeTab","background","https://*.cerner.com/","http://*.cerner.com/"
+        "alarms","activeTab","background","https://*.cerner.com/","http://*.cerner.com/","http://*.cerner.corp/"
     ]
 }
