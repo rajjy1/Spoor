@@ -53,18 +53,44 @@ function fetchCount() {
 function fetchData() {
     count = 0;
     PopulateGIT();
-    PopulateJIRA();
+    fetchJira();
     fetchCrucibleReviews();
     fetchJenkinsJobs();
 }
 
-function PopulateJIRA() {
+function fetchJira()
+{
+    jiraCount = 0;
+    var jiraUrls = ['https://jira1.cerner.com/',
+                        'https://jira2.cerner.com/',
+                        'https://jira3.cerner.com/']
+
+    $.each(jiraUrls, function (i, jiraUrl) {
+        populateJIRA(jiraUrl);
+    });
+}
+function populateJIRA(jiraServerUrl) {
+    var jiraApiUrl = jiraServerUrl + "rest/api/2/search?jql=assignee%3D" + cernerUsername + "%20and%20status!%3DClosed";
     $.ajax({
-        url: "https://jira2.cerner.com/rest/api/2/search?jql=assignee%3D" + cernerUsername + "%20and%20status!%3DClosed",
+        url: jiraApiUrl,
         type: "GET",
         dataType: "json",
         async: true,
-        success: handleJIRAData,
+        success: function (data) {
+            var cList = "<ul> ";
+            var link = "";
+            var giraCount = 0;
+            $.each(data.issues, function (key, val) 
+            {
+                link = jiraServerUrl + 'browse/' + val.key;
+                cList += " <li class='testli'><a href=" + link + " target='_blank'>" + val.fields.summary + " </a></li>";
+                giraCount++;
+            });
+
+            cList += " </ul>"
+            $("#jira").html(cList);
+            updateJiraCount(giraCount);
+        },
         jsonp: false,
         error: function (response) {
             $("#jira").text("An error was encountered.");
@@ -72,28 +98,19 @@ function PopulateJIRA() {
     });
 }
 
-function handleJIRAData(data) {
-    var cList = "<ul> ";
-    var link = "";
-    var giraCount = 0;
-    $.each(data.issues, function (key, val) {
-        link = "https://jira2.cerner.com/browse/" + val.key;
-        cList += " <li class='testli'><a href=" + link + " target='_blank'>" + val.fields.summary + " </a></li>";
-        giraCount++;
-    });
-    cList += " </ul>"
-    $("#jira").html(cList);
-    $("#jiras").text(giraCount + " outstanding jiras");
-    updateCount(giraCount);
-}
+function updateJiraCount(cnt)
+{
+    jiraCount += cnt;
+    $("#jiras").text(jiraCount + " outstanding jiras");
+    updateCount(cnt);
 
+}
 
 function fetchCrucibleReviews() {
     toReviewElement = "<li class='crucibleHeader'>To Review:</li>";
     outReviewElement = "<li class='crucibleHeader'>Out For Review:</li>";
-    var url1 = 'http://crucible1.cerner.com/viewer/rest-service/reviews-v1/filter?moderator=' + cernerUsername + '&creator=' + cernerUsername + '&orRoles=true&complete=false&states=Review';
     totalCrucibleCount = 0;
-    var crucibleUrls = ['http://crucible1.cerner.com/viewer/',
+    var crucibleUrls = ['http://crucible01.cerner.com/',
                         'http://crucible02.cerner.com/viewer/',
                         'http://crucible03.cerner.com/viewer/']
 
