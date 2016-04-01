@@ -6,11 +6,11 @@
     "description"      : "See what you owe to you team",
 
     "icons"            : {
-        "128" : "resources/images/angry_icon.png"
+        "128" : "resources/images/happy_icon.png"
     },
 
     "browser_action"   : {
-        "default_icon"  : "resources/images/angry_icon19.png",
+        "default_icon"  : "resources/images/icon.png",
         "default_popup" : "ui/index.html"
     },
 
