@@ -1,4 +1,6 @@
-# StackOverflow-Notifications
+```html
+<h2>Spoor - what you owe your team</h2>
+```
 Chrome extension to see all your TODOs
 
 ## Dependencies
@@ -20,3 +22,4 @@ To build, run the following command:
     grunt
 
 Build outputs to `build/`.
+
