@@ -1,7 +1,7 @@
 
 ## Spoor - what you owe your team
 
-Chrome extension to see all your TODOs
+   Spoor is a chrome extension that fetches all pending pull requests from github, failed jenkins build from a jenkins view, pending code reviews from crucible and all open assigned jiras and displays it in a chrome extension. It will have a label that displays the total count. The extension will have a link to each task in the pop-up window.
 
 ## Dependencies
 
