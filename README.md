@@ -1,6 +1,6 @@
-```html
-<h2>Spoor - what you owe your team</h2>
-```
+
+## Spoor - what you owe your team
+
 Chrome extension to see all your TODOs
 
 ## Dependencies
