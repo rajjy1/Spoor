@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         fetchData();
     }
-    DisplayInput();
-    RegisterInputEvents();
+    setTimeout(function(){DisplayInput()}, 500);
 }, false);
 
 function PopulateGIT() {
@@ -295,6 +294,7 @@ function DisplayInput() {
         $("#viewName").hide();
         $("#saveViewName").hide();
     }
+    RegisterInputEvents();
 }
 
 function RegisterInputEvents() {

@@ -2,8 +2,12 @@
   "name": "Spoor",
   "version": "1.0.0",
   "description": "What you owe your team",
+  "repository": {
+    "type": "git",
+    "url": "git@github.cerner.com:DR026404/Spoor.git"
+  },
   "author": {
-    "name": "Dinesh Rauniyar",
+    "name": "Mantri - shipIt-2016",
     "email": "dinesh.rauniyar@cerner.com",
     "url": "http://engineering.cerner.com/"
   },
