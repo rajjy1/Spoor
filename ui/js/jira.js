@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-	fetchData();
+    fetchData();
+    DisplayInput();
 }, false);
+
+cernerUsername = null;
 
 function PopulateGIT() {
     jQuery.ajax({
@@ -190,3 +193,53 @@ function fetchJenkinsJobs() {
     });
     return reviewCount;
 }
+
+/**Cookies */
+
+function DisplayInput() {
+    console.log("in here");
+    $("#spoor").html("<div id='username-input'> <input type='text' id='username' placeholder='username' /> <label id = 'savedUser'> </label> <br /> <button id='changeUser'> Switch User </button> <button id='saveUser'> Save User </button> </div>");
+    console.log("username:" + cernerUsername);
+    if (cernerUsername == null) {
+        console.log("null");
+        $("#savedUser").hide();
+        $("#changeUser").hide();
+    } else {
+        console.log("not null");
+        $("#username").hide();
+        $("#saveUser").hide();
+    }
+}
+
+$("#username").click(function (event) {
+    console.log($.cookie('username'));
+    event.stopPropagation();
+    return false;
+})
+
+$("#saveUser").click(function (event) {
+    SetCookie('username', $("#username").val());
+    console.log(cernerUsername);
+    $("#username").hide();
+    $("#saveUser").hide();
+    $("#savedUser").text(cernerUsername);
+    $("#savedUser").show();
+    $("#changeUser").show();
+})
+
+$("#changeUser").click(function (event) {
+    event.stopPropagation();
+    $.removeCookie('username');
+    $("#username").show();
+    $("#saveUser").show();
+    $("#savedUser").text("");
+    $("#savedUser").hide();
+    $("#changeUser").hide();
+})
+
+function SetCookie(name, value) {
+    $.cookie(name, value, { expires: 7, path: '/' });
+    cernerUsername = $.cookie('username');
+}
+
+/**Cookies */

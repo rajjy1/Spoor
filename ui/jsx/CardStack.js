@@ -23,9 +23,6 @@ const styles = {
         fontSize: '17px',
         opacity: 0.8,
         textAlign: 'right'
-    },
-    visibilityNone: {
-        visibility: 'hidden'  
     }
 };
 
@@ -44,7 +41,8 @@ const App = (props) => (
 	      title='Training Manager'
 	      mobileNo='0491 570 156'
 	      location='Sydney, Australia'
-            id = "crucible"
+	      id = "crucible"
+          inputVisible = 'none'
 	      role='Starting the company in sales, James is now responsible for overseeing all staff training. James mainly focuses on getting new employees up to speed with the practices and procedures Hunter & Co has continually refined over the last 50 years.'
 	    />
 		</Card>
@@ -58,6 +56,7 @@ const App = (props) => (
 				mobileNo='0491 570 157'
 				location='Brisbane, Australia'
 				id = "jenkins"
+				inputVisible = 'none'
 				role="Isaac has overseen all of Hunter and Co's creative efforts for the last five years. He's ability to generate a shared vision between teams throughout the company has been his biggest achievement."
 			/>
 		</Card>
@@ -71,6 +70,7 @@ const App = (props) => (
 				mobileNo='0491 570 158'
 				location='Sydney, Australia'
 				id = "jira"
+				inputVisible = 'none'
 				role="In Sarah's short time with the company, she is now a key figure in the sales team for the Sydney and outer region. Her excellent communication skills has opened up the door to let her mentoring any new hires in sales."
 			/>
 		</Card>
@@ -84,6 +84,7 @@ const App = (props) => (
 				mobileNo='0491 570 110'
 				location='Melbourne, Australia'
 				id = "github"
+				inputVisible = 'none'
 				role="In recent years Hunter & Co's website and accompaning app has undergone a massive face lift. Srinivas was responsible for the exploration and planning of the new technology used. He now works on maintaining and continually improving the website."
 			/>
 		</Card>
@@ -96,7 +97,8 @@ const App = (props) => (
 				title='what you owe to your team'
 				mobileNo='0491 570 157'
 				location='Brisbane, Australia'
-                id = "spoor"
+				id = "spoor"
+				inputVisible = 'visible'
 				role="Isaac has overseen all of Hunter and Co's creative efforts for the last five years. He's ability to generate a shared vision between teams throughout the company has been his biggest achievement."
 			/>
 		</Card>
@@ -176,14 +178,9 @@ const TeamMemberCard = (props) => (
         <div>
             <p><ul id = {props.id}> </ul></p>
         </div>
-        <div name={props.id}  style= {styles.visibilityNone} >
-            <div id="username-input">
-                <input type="text" id="username" placeholder="username"/>
-                <button id="saveUserName">Save username</button>
-                <button id="forget-user">Forget User</button>
-            </div>
+        <div id="{props.id}">
         </div>
-  </div>
+    </div>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));
