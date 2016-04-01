@@ -42,6 +42,7 @@ function handleGITData(data) {
     }
     cList1 += " </ul>"
     $("#github").html(cList1);
+    $("#requests").text(gitCount + " git pull requests");
     updateCount(gitCount);
 }
 
@@ -82,6 +83,7 @@ function handleJIRAData(data) {
     });
     cList += " </ul>"
     $("#jira").html(cList);
+    $("#jiras").text(giraCount + " outstanding jiras");
     updateCount(giraCount);
 }
 
@@ -90,6 +92,7 @@ function fetchCrucibleReviews() {
     console.log("fcr");
     content = "";
     var url1 = 'http://crucible1.cerner.com/viewer/rest-service/reviews-v1/filter?moderator=' + cernerUsername + '&creator=' + cernerUsername + '&orRoles=true&complete=false&states=Review';
+    totalCrucibleCount = 0;
     fetchReviews(url1, true);
     var url2 = 'http://crucible1.cerner.com/viewer/rest-service/reviews-v1/filter?reviewer=' + cernerUsername + '&complete=false&states=Review';
     fetchReviews(url2, false);
@@ -144,6 +147,10 @@ function fetchReviews(apiUrl, flag) {
                 reviewElement += "Out For Review:";
             }
             updateCount(reviewCount);
+            totalCrucibleCount += reviewCount;
+
+            $("#reviews").text(totalCrucibleCount + " outstanding reviews");
+
             reviewElement += "<ul>";
             $.each(reviewsList, function (i, reviewId) {
                 reviewElement += "<li>" + reviewId + "</li>";
@@ -195,6 +202,7 @@ function fetchJenkinsJobs() {
             });
             reviewElement += "</ul>";
             $("#jenkins").html(reviewElement);
+            $("#failed").text(reviewCount + " builds failed");
         }, error: function (obj, error, errormsg) {
             alert(obj.responseText);
 

@@ -22,7 +22,8 @@ const styles = {
         fontWeight: 300,
         fontSize: '17px',
         opacity: 0.8,
-        textAlign: 'right'
+        textAlign: 'right',
+        display: 'hidden'
     }
 };
 
@@ -38,8 +39,7 @@ const App = (props) => (
 		imgSrc='../../resources/images/crucible-icon.png'
 		imgBorderColor='#6A067A'
 		name='Crucible'
-		status='Disconnected'
-		title='Outstanding Reviews'
+		status='Unavailable'
 		titleid='reviews'
 	      id = "crucible"
 	      inputVisible = 'none'
@@ -50,8 +50,7 @@ const App = (props) => (
 			<TeamMemberCard
 		imgSrc='../../resources/images/jenkins-icon.png'
 		imgBorderColor='#015389'
-		status='Disconnected'
-		title = "builds failed"
+		status='Unavailable'
 		titleid='failed'
 				name='Jenkins'
 				id = "jenkins"
@@ -63,8 +62,7 @@ const App = (props) => (
 		        imgSrc='../../resources/images/jira-icon.png'
 				imgBorderColor='#6A067A'
 				name='Jira'
-				status='Disconnected'
-				title = "outstanding jiras"
+				status='Unavailable'
 				titleid='jiras'
 				id = "jira"
 				inputVisible = 'none'/>
@@ -75,8 +73,7 @@ const App = (props) => (
 		        imgSrc='../../resources/images/github-icon.png'
 		        imgBorderColor='#086C32'
 				name='Github'
-				status='Disconnected'
-				title = "outstanding pull requests"
+				status='Unavailable'
 				titleid='requests'
 				id = "github"
 				inputVisible = 'none'/>
@@ -88,7 +85,6 @@ const App = (props) => (
 				imgBorderColor='#086C32'
 				name='Spoor'
 				title='what you owe to your team'
-				titleid='what'
 				mobileNo='0491 570 157'
 				id = "spoor"
 				inputVisible = 'visible'
@@ -164,11 +160,11 @@ const TeamMemberCard = (props) => (
 		<header style={styles.cardHeader} className='card-header-details'>
 			<ProfilePicture imgSrc={props.imgSrc} borderColor={props.imgBorderColor} />
             <div>
-                <p style= { { visibility: 'hidden' }} id={props.titleid}> {props.title} </p>
+                <p id={props.titleid}> </p>
             </div>
 			<div>
 				<h1 style={styles.headerName}>{props.name}</h1>
-				<h3 style= { { visibility: 'hidden' }}  style={styles.headerTitle} className='icon ion-ios-arrow-down'>{props.status}</h3>
+				<h3 style={styles.headerTitle} className='icon ion-ios-arrow-down'>{props.status}</h3>
 			</div>
 		</header>
         <div>
