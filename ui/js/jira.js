@@ -89,13 +89,21 @@ function handleJIRAData(data) {
 
 
 function fetchCrucibleReviews() {
-    console.log("fcr");
-    content = "";
+    toReviewElement = "<li class='crucibleHeader'>To Review:</li>";
+    outReviewElement = "<li class='crucibleHeader'>Out For Review:</li>";
     var url1 = 'http://crucible1.cerner.com/viewer/rest-service/reviews-v1/filter?moderator=' + cernerUsername + '&creator=' + cernerUsername + '&orRoles=true&complete=false&states=Review';
     totalCrucibleCount = 0;
-    fetchReviews(url1, true);
-    var url2 = 'http://crucible1.cerner.com/viewer/rest-service/reviews-v1/filter?reviewer=' + cernerUsername + '&complete=false&states=Review';
-    fetchReviews(url2, false);
+    var crucibleUrls = ['http://crucible1.cerner.com/viewer/',
+                        'http://crucible02.cerner.com/viewer/',
+                        'http://crucible03.cerner.com/viewer/']
+
+    $.each(crucibleUrls, function (i, crucibleUrl) {
+        fetchReviews(crucibleUrl, true);
+            });
+
+    $.each(crucibleUrls, function (i, crucibleUrl) {
+        fetchReviews(crucibleUrl, false);
+            });
     return count;
 };
 
@@ -104,17 +112,29 @@ function updateCount(cnt) {
     chrome.browserAction.setBadgeText({ text: "" + count });
 }
 
-function updateCrucibleContent(review) {
-    content += review;
-    $("#crucible").html(content);
+function updateCrucibleContent(flag, review){
+    if (flag) {
+        outReviewElement += review;      
+    } else {
+        toReviewElement += review;
+    }
+    $("#crucible").html(toReviewElement +"<li class='crucibleHeaderBlank'></li>"+ outReviewElement);
 }
 
 function fetchReviews(apiUrl, flag) {
-    console.log("fr");
     var reviewCount = 0;
+    var queryUrl = ""
+    if (flag)
+    {
+        queryUrl = apiUrl + 'rest-service/reviews-v1/filter?author='+ cernerUsername + '&moderator=' + cernerUsername + '&creator=' + cernerUsername + '&orRoles=true&complete=false&states=Review'
+    }
+    else
+    {
+        queryUrl = apiUrl + 'rest-service/reviews-v1/filter?reviewer=' + cernerUsername + '&complete=false&states=Review'
+    }
     jQuery.ajax({
         type: 'GET',
-        url: apiUrl,
+        url: queryUrl,
         dataType: 'json',
         jsonp: false,
         contentType: 'application/json',
@@ -132,7 +152,7 @@ function fetchReviews(apiUrl, flag) {
                     var review = event.permaId;
                     var reviewName = event.name;
                     var reviewId = review.id;
-                    reviewsList.push("<a href=http://crucible1.cerner.com/viewer/cru/" + reviewId + "> " + reviewId + "(" + reviewName + ")</a>");
+                    reviewsList.push("<a href=" + apiUrl + "cru/" + reviewId + " target='_blank' > " + reviewId + "&nbsp;:&nbsp;" + reviewName + "</a>");
                     reviewCount++;
                 });
             } else {
@@ -141,11 +161,7 @@ function fetchReviews(apiUrl, flag) {
 
             var reviewElement = "";
 
-            if (flag) {
-            	reviewElement += "<li class='crucibleHeader'>Out For Review:</li>";
-            } else {
-                reviewElement += "<li class='crucibleHeader'>To Review:</li>";
-            }
+            
             updateCount(reviewCount);
             totalCrucibleCount += reviewCount;
 
@@ -156,8 +172,7 @@ function fetchReviews(apiUrl, flag) {
                 reviewElement += "<li>" + reviewId + "</li>";
             });
             reviewElement += "</ul>";
-            reviewElement += "<li class='crucibleHeaderBlank'></li>";       
-            updateCrucibleContent(reviewElement);
+            updateCrucibleContent(flag, reviewElement);
         },
         error: function (error) {
             console.log("crucible error");
