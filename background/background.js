@@ -1,6 +1,6 @@
 
 var oldChromeVersion = !chrome.runtime;
-var delay = 5;
+var delay = 60;
 
 if (oldChromeVersion) {
   onInit();
@@ -12,6 +12,7 @@ if (oldChromeVersion) {
 function onAlarm(alarm) {
   console.log('Got alarm', alarm);
   startRequest();
+    fetchCount();
 }
 
 function onInit() {
@@ -29,50 +30,5 @@ function scheduleRequest() {
 }
 
 function startRequest(params) {
-  fetchGit();
-  scheduleRequest();
-}
-
-function fetchGit() {
-  console.log('FetchGit');
-  jQuery.ajax({
-    type : 'GET',
-    url : 'https://github.cerner.com/api/v3/users/DB029476/received_events?per_page=100',
-    dataType : 'json',
-    contentType : 'application/json',
-    async : false,    
-    success: function(response) {
-        console.log(response);
-      var pullrequestCount=0;
-
-      var pullRequestList=[];
-      if ( jQuery.isArray(response) ) {
-      
-      $.each(response, function(i, event) {
-       var eventType=event.type;
-       if(eventType=="PullRequestEvent"){
-          var payload=event.payload;
-          if(payload.action=="opened"){
-            var pullrequest=payload.pull_request;
-            pullRequestList.push(pullrequest.html_url);
-            pullrequestCount++;
-          }
-        }
-      });
-      } else {
-        // alert('Not array');
-      }
-      $("#githubCount").html(pullrequestCount);
-      chrome.browserAction.setBadgeText({text: ""+pullrequestCount}); 
-      var pullRequestElement="<ul>";
-      $.each(pullRequestList, function(i, pullRequest) {
-        pullRequestElement+="<li>"+"<a href="+pullRequest+">"+pullRequest+"</a>"+"</li>";
-      });
-      pullRequestElement+="</ul>";
-      $("#githubRequests").html(pullRequestElement);
-      },error: function(obj,error,errormsg){
-      console.log('Error');
-      
-    }
-    });
+    scheduleRequest();
 }
