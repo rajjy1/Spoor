@@ -1,6 +1,81 @@
+body {
+	/*height: 600px;*/
+	/*width:800px;*/
+	overflow:hidden;
+}
+
+ul{
+	width: 95%;
+	padding: 0px 0px 0px 7px;
+	height: 100%;
+	
+}
+
+li{
+	list-style: none;
+	width: 100%;
+	height:100%;
+	font-weight:200px;
+	font-size:15px;
+	float:right; 
+}
+
+.componentul{
+	overflow-y:auto;
+	height:360px;
+	width: 400px;
+}
+
+#crucible ul{
+	height:30px;
+	
+}
+
+.componentul ul li{
+	height:auto;
+	padding: 2% 0% 2% 2%;
+}
+
+.testli{
+	opacity: 0.7;
+}
+
+.crucibleHeader{
+	font-size:25px;
+	font-weight:bold;
+	height:40px;
+	width: 95%;
+	padding: 2% 0% 2% 5%;
+}
+
+.crucibleHeaderBlank{
+	opacity: 0.0;
+	height: 20px;
+}
+
 li:nth-child(odd) {
-  background-color: #eee;
+  background-color: #ccc;
 }
 li:nth-child(even) {
-  background-color: #ddd;
+  background-color: #aaa;
+}
+
+a:link {
+    text-decoration: none;
+    color: #2b2e58;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #2b2e58;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #2b2e58;
+}
+
+a:active {
+    text-decoration: underline;
+    color: #2b2e58;
 }

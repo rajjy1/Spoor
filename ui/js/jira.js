@@ -78,7 +78,7 @@ function handleJIRAData(data) {
     var giraCount = 0;
     $.each(data.issues, function (key, val) {
         link = "https://jira2.cerner.com/browse/" + val.key;
-        cList += " <li><a href=" + link + " target='_blank'>" + val.fields.summary + " </a></li>";
+        cList += " <li class='testli'><a href=" + link + " target='_blank'>" + val.fields.summary + " </a></li>";
         giraCount++;
     });
     cList += " </ul>"
@@ -142,9 +142,9 @@ function fetchReviews(apiUrl, flag) {
             var reviewElement = "";
 
             if (flag) {
-                reviewElement += "To Review:";
+            	reviewElement += "<li class='crucibleHeader'>Out For Review:</li>";
             } else {
-                reviewElement += "Out For Review:";
+                reviewElement += "<li class='crucibleHeader'>To Review:</li>";
             }
             updateCount(reviewCount);
             totalCrucibleCount += reviewCount;
@@ -156,6 +156,7 @@ function fetchReviews(apiUrl, flag) {
                 reviewElement += "<li>" + reviewId + "</li>";
             });
             reviewElement += "</ul>";
+            reviewElement += "<li class='crucibleHeaderBlank'></li>";       
             updateCrucibleContent(reviewElement);
         },
         error: function (error) {

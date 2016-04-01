@@ -32,7 +32,8 @@ const App = (props) => (
 		height={500}
 		width={400}
 		background='#f8f8f8'
-	  hoverOffset={25}>
+	  hoverOffset={25}
+	  position= 'fixed'>
 
 		<Card background='#5674b9'>
       <TeamMemberCard
@@ -168,7 +169,7 @@ const TeamMemberCard = (props) => (
 			</div>
 		</header>
         <div>
-            <p><ul id = {props.id}> </ul></p>
+            <p><ul id = {props.id} className="componentul"> </ul></p>
         </div>
     </div>
 );
