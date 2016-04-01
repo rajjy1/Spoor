@@ -80,7 +80,7 @@ const App = (props) => (
 			<TeamMemberCard
 				imgSrc='../../resources/images/happy_icon.png'
 				imgBorderColor='#086C32'
-				name='Spoor'
+				name='Settings'
 				title='what you owe to your team'
 				mobileNo='0491 570 157'
 				id = "spoor"
@@ -157,7 +157,7 @@ const TeamMemberCard = (props) => (
 		<header style={styles.cardHeader} className='card-header-details'>
 			<ProfilePicture imgSrc={props.imgSrc} borderColor={props.imgBorderColor} />
             <div>
-                <p id={props.titleid}> </p>
+                <p id={props.titleid} className="titleClass"> </p>
             </div>
 			<div>
 				<h1 style={styles.headerName}>{props.name}</h1>

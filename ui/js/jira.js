@@ -144,7 +144,11 @@ function fetchCrucibleReviews() {
 
 function updateCount(cnt) {
     count += cnt;
-    chrome.browserAction.setBadgeText({ text: "" + count });
+    if (count > 0) {
+        chrome.browserAction.setBadgeText({ text: count.toString() });
+    } else {
+        chrome.browserAction.setBadgeText({ text: "" });
+    }
 }
 
 function updateCrucibleContent(flag, review){
@@ -246,7 +250,7 @@ function fetchJenkinsJobs() {
 
                 });
             } else {
-                alert('Not array');
+                //alert('Not array');
             }
             updateCount(reviewCount);
             var reviewElement = "<ul>";
@@ -257,7 +261,7 @@ function fetchJenkinsJobs() {
             $("#jenkins").html(reviewElement);
             $("#failed").text(reviewCount + " builds failed");
         }, error: function (obj, error, errormsg) {
-            alert(obj.responseText);
+           // alert(obj.responseText);
 
         }
     });

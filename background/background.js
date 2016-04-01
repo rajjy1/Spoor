@@ -1,6 +1,6 @@
 
 var oldChromeVersion = !chrome.runtime;
-var delay = 1;
+var delay = 60;
 
 if (oldChromeVersion) {
   onInit();
@@ -12,6 +12,7 @@ if (oldChromeVersion) {
 function onAlarm(alarm) {
   console.log('Got alarm', alarm);
   startRequest();
+    fetchCount();
 }
 
 function onInit() {
@@ -30,5 +31,4 @@ function scheduleRequest() {
 
 function startRequest(params) {
     scheduleRequest();
-    fetchCount();
 }
