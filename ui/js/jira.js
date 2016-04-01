@@ -101,7 +101,7 @@ function populateJIRA(jiraServerUrl) {
             $.each(data.issues, function (key, val) 
             {
                 link = jiraServerUrl + 'browse/' + val.key;
-                cList += " <li class='testli'><a href=" + link + " target='_blank'>" + val.fields.summary + " </a></li>";
+                cList += " <li class='testli'><a href=" + link + " target='_blank'>" + val.key + '&nbsp:&nbsp' + val.fields.summary + " </a></li>";
                 giraCount++;
             });
 
