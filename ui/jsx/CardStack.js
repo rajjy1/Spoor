@@ -3,27 +3,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const styles = {
-	cardHeader: {
-		display: 'flex',
-		height: '100px',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		padding: '10px 20px',
-		color: '#fff',
-	},
-	headerName: {
-		margin: 0,
-		fontWeight: 500,
-		fontSize: '25px',
-		textAlign: 'right'
-	},
-	headerTitle: {
-		margin: '4px 0 0',
-		fontWeight: 300,
-		fontSize: '17px',
-		opacity: 0.8,
-		textAlign: 'right'
-	}
+    cardHeader: {
+        display: 'flex',
+        height: '100px',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '10px 20px',
+        color: '#fff',
+    },
+    headerName: {
+        margin: 0,
+        fontWeight: 500,
+        fontSize: '25px',
+        textAlign: 'right'
+    },
+    headerTitle: {
+        margin: '4px 0 0',
+        fontWeight: 300,
+        fontSize: '17px',
+        opacity: 0.8,
+        textAlign: 'right'
+    },
+    visibilityNone: {
+        visibility: 'hidden'  
+    }
 };
 
 const App = (props) => (
@@ -170,12 +173,16 @@ const TeamMemberCard = (props) => (
 				<h3 style={styles.headerTitle} className='icon ion-ios-arrow-down'>{props.title}</h3>
 			</div>
 		</header>
-
         <div>
-            <p>
-            <ul id = {props.id}> </ul>
-            </p>
-        </div> 
+            <p><ul id = {props.id}> </ul></p>
+        </div>
+        <div name={props.id}  style= {styles.visibilityNone} >
+            <div id="username-input">
+                <input type="text" id="username" placeholder="username"/>
+                <button id="saveUserName">Save username</button>
+                <button id="forget-user">Forget User</button>
+            </div>
+        </div>
   </div>
 );
 
