@@ -25,3 +25,16 @@ To build, run the following command:
 
 Build outputs to `build/`.
 
+## Installation
+
+* Go to Chrome extensions tool in Chrome
+   * Click on Open Menu button in chrome, should look like three lines in the chrome tab
+   * Click on more tools
+   * Click on Extensions
+   * Enable Developer mode by clicking the checkbox
+* You could directly drag the build.crx which is already compiled into the extensions itself. Otherwise,
+* Click on Load Unpacked Extension...
+* Select the build folder that was generated.
+* Your chrome extension should be shown on the chrome tab itself.
+* Go to settings and add your cerner userId and jenkins build view like
+   *  http://build.aeon.cerner.corp/view/physvc-messaging/
