@@ -1,5 +1,6 @@
 cernerUsername = $.cookie('cenrerusername');
 jenkinsViewName = $.cookie('jenkViewName');
+mentionedOnly = $.cookie('mentionedOnly');
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log("cookie username:" + $.cookie('cernerusername'));
@@ -190,8 +191,11 @@ function fetchReviews(apiUrl, flag) {
                     var review = event.permaId;
                     var reviewName = event.name;
                     var reviewId = review.id;
-                    reviewsList.push("<a href=" + apiUrl + "cru/" + reviewId + " target='_blank' > " + reviewId + "&nbsp;:&nbsp;" + reviewName + "</a>");
-                    reviewCount++;
+                    
+                    if(reviewRequiresInclusion(event,flag)){
+                        reviewsList.push("<a href=" + apiUrl + "cru/" + reviewId + " target='_blank' > " + reviewId + "&nbsp;:&nbsp;" + reviewName + "</a>");
+                        reviewCount++;
+                }
                 });
             } else {
                 console.log('Not array');
@@ -219,6 +223,14 @@ function fetchReviews(apiUrl, flag) {
         }
     });
     return reviewCount;
+}
+
+function reviewRequiresInclusion(review,flag){
+    if(flag || (mentionedOnly != "true")){
+        return true;
+    }
+    var description = review.description;
+    return description.indexOf(cernerUsername)>-1;
 }
 
 function fetchJenkinsJobs() {
@@ -271,7 +283,17 @@ function fetchJenkinsJobs() {
 
 function DisplayInput() {
     console.log("in here");
-    $("#spoor").html("<div id='username-input'> <input type='text' id='username' placeholder='username' /> <label id = 'savedUser'> </label> <br /> <button id='changeUser'> Switch User </button> <button id='saveUser'> Save User </button> </div>       <br /><br />         <div id='viewname-input'> <input type='text' id='viewName' placeholder='view name' /> <label id = 'savedViewName'> </label> <br /> <button id='changeViewName'> Switch View Name </button> <button id='saveViewName'> Save View Name </button> </div>");
+
+    var checked = "";
+    if(mentionedOnly=="true"){
+        checked = "checked";
+    }
+
+    var settingsHtml = "<div id='username-input'> <input type='text' id='username' placeholder='username' /> <label id = 'savedUser'> </label> <br /> <button id='changeUser'> Switch User </button> <button id='saveUser'> Save User </button> </div>       <br /><br /> "        
+        +"</div><div id='viewname-input'> <input type='text' id='viewName' placeholder='view name' /> <label id = 'savedViewName'> </label> <br /> "
+        +"<button id='changeViewName'> Switch View Name </button> <button id='saveViewName'> Save View Name </button> </div><br/></br>"
+        +"<label>Retrieve reviews with mentions in description</label><div class='onoffswitch'>    <input type='checkbox' name='onoffswitch' class='onoffswitch-checkbox' id='mentionedToggle' "+checked+">  <label class='onoffswitch-label' for='mentionedToggle'>  <span class='onoffswitch-inner'></span><span class='onoffswitch-switch'></span></label></div>";
+    $("#spoor").html(settingsHtml);
     console.log("username:" + cernerUsername);
     if (cernerUsername == null || cernerUsername == "") {
         console.log("null");
@@ -364,8 +386,22 @@ function RegisterInputEvents() {
         $("#changeViewName").hide();
         fetchData();
     })
-    /* viewName events*/
+
+
+    $('#mentionedToggle').on('click', function(){
+        event.stopPropagation();
+        if($(this).is(':checked')) {
+            SetCookie('mentionedOnly', "true");
+            mentionedOnly = "true";
+        }else{
+            SetCookie('mentionedOnly', "false");
+            mentionedOnly = "false";
+        }
+        fetchData();
+    });
+    
 }
+
 
 function SetCookie(name, value) {
     $.cookie(name, value, { expires: 7, path: '/' });
