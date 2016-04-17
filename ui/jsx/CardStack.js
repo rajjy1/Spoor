@@ -36,7 +36,7 @@ const App = (props) => (
 	  position= 'fixed'>
 
 		<Card background='#5674b9'>
-      <TeamMemberCard
+      <TaskCard
 		imgSrc='../../resources/images/crucible-icon.png'
 		imgBorderColor='#6A067A'
 		name='Crucible'
@@ -47,7 +47,7 @@ const App = (props) => (
 		</Card>
 
 		<Card background='#00bff3'>
-			<TeamMemberCard
+			<TaskCard
 		imgSrc='../../resources/images/jenkins-icon.png'
 		imgBorderColor='#015389'
 		titleid='failed'
@@ -57,7 +57,7 @@ const App = (props) => (
 		</Card>
 
 		<Card background='#3cb878'>
-			<TeamMemberCard
+			<TaskCard
 		        imgSrc='../../resources/images/jira-icon.png'
 				imgBorderColor='#6A067A'
 				name='Jira'
@@ -67,7 +67,7 @@ const App = (props) => (
 		</Card>
 
 		<Card background='#acd373'>
-			<TeamMemberCard
+			<TaskCard
 		        imgSrc='../../resources/images/github-icon.png'
 		        imgBorderColor='#086C32'
 				name='Github'
@@ -77,7 +77,7 @@ const App = (props) => (
 		</Card>
 
         <Card background='#b7b7b7'>
-			<TeamMemberCard
+			<TaskCard
 				imgSrc='../../resources/images/happy_icon.png'
 				imgBorderColor='#086C32'
 				name='Settings'
@@ -85,7 +85,7 @@ const App = (props) => (
 				mobileNo='0491 570 157'
 				id = "spoor"
 				inputVisible = 'visible'
-				role="Isaac has overseen all of Hunter and Co's creative efforts for the last five years. He's ability to generate a shared vision between teams throughout the company has been his biggest achievement."
+				role='none'
 			/>
 		</Card>
 
@@ -152,7 +152,7 @@ const DetailsRow = ({ icon, title, summary }) => {
 	);
 };
 
-const TeamMemberCard = (props) => (
+const TaskCard = (props) => (
 	<div style={{ position: 'absolute', top: 0 }}>
 		<header style={styles.cardHeader} className='card-header-details'>
 			<ProfilePicture imgSrc={props.imgSrc} borderColor={props.imgBorderColor} />

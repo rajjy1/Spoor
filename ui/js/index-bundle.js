@@ -95,7 +95,7 @@
 			_react2.default.createElement(
 				_reactCardstack.Card,
 				{ background: '#5674b9' },
-				_react2.default.createElement(TeamMemberCard, {
+				_react2.default.createElement(TaskCard, {
 					imgSrc: '../../resources/images/crucible-icon.png',
 					imgBorderColor: '#6A067A',
 					name: 'Crucible',
@@ -107,7 +107,7 @@
 			_react2.default.createElement(
 				_reactCardstack.Card,
 				{ background: '#00bff3' },
-				_react2.default.createElement(TeamMemberCard, {
+				_react2.default.createElement(TaskCard, {
 					imgSrc: '../../resources/images/jenkins-icon.png',
 					imgBorderColor: '#015389',
 					titleid: 'failed',
@@ -118,7 +118,7 @@
 			_react2.default.createElement(
 				_reactCardstack.Card,
 				{ background: '#3cb878' },
-				_react2.default.createElement(TeamMemberCard, {
+				_react2.default.createElement(TaskCard, {
 					imgSrc: '../../resources/images/jira-icon.png',
 					imgBorderColor: '#6A067A',
 					name: 'Jira',
@@ -129,7 +129,7 @@
 			_react2.default.createElement(
 				_reactCardstack.Card,
 				{ background: '#acd373' },
-				_react2.default.createElement(TeamMemberCard, {
+				_react2.default.createElement(TaskCard, {
 					imgSrc: '../../resources/images/github-icon.png',
 					imgBorderColor: '#086C32',
 					name: 'Github',
@@ -140,7 +140,7 @@
 			_react2.default.createElement(
 				_reactCardstack.Card,
 				{ background: '#b7b7b7' },
-				_react2.default.createElement(TeamMemberCard, {
+				_react2.default.createElement(TaskCard, {
 					imgSrc: '../../resources/images/happy_icon.png',
 					imgBorderColor: '#086C32',
 					name: 'Settings',
@@ -148,7 +148,7 @@
 					mobileNo: '0491 570 157',
 					id: 'spoor',
 					inputVisible: 'visible',
-					role: 'Isaac has overseen all of Hunter and Co\'s creative efforts for the last five years. He\'s ability to generate a shared vision between teams throughout the company has been his biggest achievement.'
+					role: 'none'
 				})
 			)
 		);
@@ -224,7 +224,7 @@
 		);
 	};
 
-	var TeamMemberCard = function TeamMemberCard(props) {
+	var TaskCard = function TaskCard(props) {
 		return _react2.default.createElement(
 			'div',
 			{ style: { position: 'absolute', top: 0 } },
